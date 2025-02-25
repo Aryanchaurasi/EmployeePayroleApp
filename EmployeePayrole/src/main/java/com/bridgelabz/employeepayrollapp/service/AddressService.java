@@ -3,12 +3,13 @@ package com.bridgelabz.employeepayrollapp.service;
 import com.bridgelabz.employeepayrollapp.dto.AddressDTO;
 import com.bridgelabz.employeepayrollapp.model.AddressModel;
 import com.bridgelabz.employeepayrollapp.repository.AddressRepository;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Data
 @Service
 public class AddressService {
 
