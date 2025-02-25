@@ -12,7 +12,7 @@
 	<artifactId>employeepayrollapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>employeePayRollApp</name>
-	<description>Employee Pay Roll App Using Spring Boot</description>
+	<description>Employee PayRoll App Using Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
