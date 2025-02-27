@@ -1,25 +1,24 @@
 package com.bridgelabz.employeepayrollapp.service;
 
+import com.bridgelabz.employeepayrollapp.exception.EmployeeNotFoundException;
 import com.bridgelabz.employeepayrollapp.model.EmployeeModel;
 import com.bridgelabz.employeepayrollapp.repository.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @Slf4j
 @Service
 public class EmployeeService {
+    private final Map<Integer, EmployeeModel> employeeMap = new HashMap<>();
     public final EmployeeRepository repository;
     public EmployeeService(EmployeeRepository repository) {
 
         this.repository = repository;
     }
-    public EmployeeModel addEmployee(EmployeeModel employee) {
-        log.info("Adding new employee:{}",employee);
-        return repository.save(employee);
-    }
-
     public List<EmployeeModel> getAllEmployees() {
         log.info("Fetching all Employees");
         return repository.findAll();
@@ -45,5 +44,19 @@ public class EmployeeService {
     public void deleteEmployee(Long id) {
         log.info("Deleting employee with ID: {}",id);
         repository.deleteById(id);
+    }
+
+
+    public EmployeeModel getEmployeeById(int id) {
+        if (!employeeMap.containsKey(id)) {
+            throw new EmployeeNotFoundException("Employee with ID " + id + " not found!");
+        }
+        return employeeMap.get(id);
+    }
+
+    public EmployeeModel addEmployee(EmployeeModel employeeDTO) {
+        int newId = employeeMap.size() + 1;
+        employeeMap.put(newId, employeeDTO);
+        return employeeDTO;
     }
 }
