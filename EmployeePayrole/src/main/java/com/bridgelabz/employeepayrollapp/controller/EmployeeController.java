@@ -1,7 +1,10 @@
 package com.bridgelabz.employeepayrollapp.controller;
+
 import com.bridgelabz.employeepayrollapp.model.EmployeeModel;
 import com.bridgelabz.employeepayrollapp.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 @RestController
@@ -14,7 +17,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/post")
-    public EmployeeModel addEmployee(@RequestBody EmployeeModel employee) {
+    public EmployeeModel addEmployee(@Valid @RequestBody EmployeeModel employee) {
         return service.addEmployee(employee);
     }
 
@@ -29,7 +32,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public EmployeeModel updateEmployee(@PathVariable Long id, @RequestBody EmployeeModel employee) {
+    public EmployeeModel updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeModel employee) {
         return service.updateEmployee(id, employee);
     }
 
